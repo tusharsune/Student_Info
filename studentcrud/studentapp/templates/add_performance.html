@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Performance for {{ student.name }}</title>
+    <link rel="stylesheet" href="/static/add_performance.css">
+</head>
+
+<body>
+    <div class="performance-container">
+        <h2 class="performance-title">📌 Add Performance for {{ student.name }}</h2>
+
+        <form method="POST" class="performance-form">
+            {% csrf_token %}
+            <div class="form-fields">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="save-button">💾 Save Performance</button>
+        </form>
+
+        <div class="back-action">
+            <a href="{% url 'student_detail' student.id %}" class="back-button">🔙 Back to Student</a>
+        </div>
+    </div>
+</body>
+
+</html>

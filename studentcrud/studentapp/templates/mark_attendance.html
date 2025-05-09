@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mark Attendance for {{ student.name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa, #ffffff);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            border-radius: 20px;
+            /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            animation: slideIn 0.6s ease-out;
+            background-color: #ffffff;
+            padding: 30px;
+        }
+
+        .card:hover {
+            box-shadow: 0 1px 5px black;
+        }
+
+        h2 {
+            color: #00796b;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-weight: 500;
+            color: #004d40;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #26a69a;
+            border-color: #26a69a;
+            box-shadow: inset 2px 2px 2px black;
+
+        }
+
+        .btn-primary:hover {
+            background-color: #00796b;
+            border-color: #00796b;
+            color: white;
+            box-shadow: inset 0.5px 0.5px 2px black;
+
+        }
+
+        .btn-secondary {
+            background-color: #b2dfdb;
+            /* border-color: #b2dfdb; */
+            color: #004d40;
+            box-shadow: 2px 2px 1px black;
+
+        }
+
+        .btn-secondary:hover {
+            background-color: #80cbc4;
+            border-color: #80cbc4;
+            color: black;
+            box-shadow: 1.5px 1.5px 0.5px black;
+
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mx-auto" style="max-width: 500px;">
+            <h2 class="text-center">Mark Attendance</h2>
+            <p class="text-center text-muted mb-4">
+                For <strong>{{ student.name }}</strong> on <strong>{{ date|date:"F j, Y" }}</strong>
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label>Status:</label>
+                    {{ form.status }}
+                </div>
+                <div class="d-flex justify-content-between mt-4">
+                    <button type="submit" class="btn btn-primary px-4">Save</button>
+                    <a href="{% url 'student_detail' student.id %}" class="btn btn-secondary px-4">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
