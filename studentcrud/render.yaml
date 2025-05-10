@@ -3,8 +3,9 @@ services:
     name: student-info
     env: python
     buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn studentcrud.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: studentcrud.settings
       - key: SECRET_KEY
-        value: c1v)(20r^-190@cfbjq@d7m65z=(5f#gq@ocwb8j8+ol+78u2)
+        value: "c1v)(20r^-190@cfbjq@d7m65z=(5f#gq@ocwb8j8+ol+78u2)"
