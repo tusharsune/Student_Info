@@ -3,7 +3,7 @@ services:
     name: student-info
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn studentcrud.wsgi"
+    startCommand: "gunicorn studentcrud.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: studentcrud.settings
