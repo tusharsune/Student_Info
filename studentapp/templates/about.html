@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About | Student Info</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .navbar {
+            background-color: #4a90e2;
+            /* color: white; */
+            padding: 1em;
+            height: 6vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #003366;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-links a:hover {
+            background: #003366;
+            color: #fff;
+        }
+
+        .container {
+            padding: 2em;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: square;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div><strong>{{ project_name }}</strong></div>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>About This Project</h1>
+        <h2>Our Mission</h2>
+        <p>{{ mission }}</p>
+
+        <h2>Why We Built This</h2>
+        <p>{{ why_built }}</p>
+
+        <h2>How It Helps</h2>
+        <p>{{ how_it_helps }}</p>
+
+        <h2>Key Features:</h2>
+        <ul>
+            {% for feature in features %}
+            <li>{{ feature }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Future Plans</h2>
+        <ul>
+            {% for plan in future_plans %}
+            <li>{{ plan }}</li>
+            {% endfor %}
+        </ul>
+
+
+        <h2>Tech Stack Used:</h2>
+        <ul>
+            {% for tech in tech_stack %}
+            <li>{{ tech }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Developer Info:</h2>
+        <p><strong>{{ developer_name }}</strong> - {{ developer_role }}</p>
+    </div>
+</body>
+
+</html>
