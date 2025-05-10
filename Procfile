@@ -1,1 +1,0 @@
-gunicorn studentcrud.studentcrud.wsgi
