@@ -1,1 +1,1 @@
-web: gunicorn studentcrud.studentcrud.wsgi:application
+web: gunicorn studentcrud.wsgi:application
