@@ -10,10 +10,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'c1v)(20r^-190@cfbjq@d7m65z=(5f#gq@ocw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1').split(',')
 # ALLOWED_HOSTS = ['studentcrud.onrender.com']
-ALLOWED_HOSTS = ['student-info-eg0b.onrender.com', 'localhost', '127.0.0.1']
-
 
 
 # Application definition
@@ -30,7 +28,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,8 +87,11 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'studentapp/static')]  # or your static folder
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'studentapp/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
 
 
 # Default primary key field type
