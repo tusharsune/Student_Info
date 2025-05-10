@@ -10,9 +10,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'c1v)(20r^-190@cfbjq@d7m65z=(5f#gq@ocw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['student-info-eg0b.onrender.com', 'localhost', '127.0.0.1']
-# ALLOWED_HOSTS = ['studentcrud.onrender.com']
-
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -28,6 +26,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # MUST be right after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,8 +54,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studentcrud.wsgi.application'
 
-# Database
-# For Render, use PostgreSQL in production (you'll need to set up a database on Render)
+# Database (SQLite for development)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,13 +84,17 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+# All static files in app folders (development use)
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'studentapp/static')]
+
+# Where collectstatic will place files for production
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-
-
+# Required for WhiteNoise to serve compressed static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
