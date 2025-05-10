@@ -1,0 +1,148 @@
+/* General Page Styling */
+body {
+    /* background: linear-gradient(135deg, #e0f7fa, #f1f8ff); */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* transition: background 0.5s ease-in-out; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Page Heading */
+#add-student-heading {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-top: 40px;
+    color: #007bff;
+    letter-spacing: 1px;
+    animation: slideDown 0.6s ease-out;
+}
+
+/* Container */
+#add-student-container {
+    width: 90%;
+    max-width: 620px;
+    margin: 40px auto;
+    padding: 20px;
+    /* animation: fadeInUp 0.8s ease-in-out; */
+}
+
+/* Form Styling */
+#add-student-form {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+#add-student-form:hover {
+    /* transform: translateY(-6px); */
+    /* box-shadow: 0 18px 32px rgba(0, 0, 0, 0.15); */
+    box-shadow: 2px 4px 20px black;
+}
+
+/* Input fields */
+#add-student-form input,
+#add-student-form textarea {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0d6efd;
+    /* box-shadow: 0 0 12px rgba(13, 110, 253, 0.3); */
+    box-shadow: 4px 4px 2px black;
+}
+
+/* Button Group */
+#button-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* Buttons */
+#button-group .btn {
+    flex: 1 1 45%;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+/* Submit Button */
+#submit-button {
+    background-color: #28a745;
+    color: white;
+    /* animation: pulse 2s infinite; */
+}
+
+#submit-button:hover {
+    /* background-color: #218838; */
+    /* background-color: transparent; */
+    color: black;
+    /* border: 1px solid white; */
+    box-shadow: inset 2px 2px 20px black;
+    /* transform: scale(1.05) rotate(-1deg); */
+    /* box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3); */
+}
+
+/* Back Button */
+#back-button {
+    border:1px solid black; 
+    color: black;
+    background: transparent;
+}
+
+#back-button:hover {
+    background-color: rgba(0, 0, 0, 0.851);
+    color: white;
+    border: none;
+    /* transform: scale(1.05) rotate(1deg); */
+    box-shadow: 0 8px 20px rgba(52, 58, 64, 0.2);
+}
+
+/* Cool animation keyframes */
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+/* @keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+} */
