@@ -1,10 +1,9 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <title class="animated-title">👨‍🎓 Student_Info</title>
+  <title>👨‍🎓 Student_Info</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -18,26 +17,33 @@
     body {
       background: linear-gradient(to right, #f8fbff, #ecf2ff);
       color: #333;
+      overflow-x: hidden;
     }
 
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 60px;
+      padding: 20px 30px;
       background: linear-gradient(90deg, #cce5ff, #e6f0ff);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+      position: relative;
     }
 
     .logo {
-      margin-left: -20px;
       font-size: 24px;
       font-weight: 700;
       color: #003366;
     }
 
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
     .nav-links a {
-      margin-left: 30px;
+      margin-left: 20px;
       text-decoration: none;
       color: #003366;
       font-weight: 600;
@@ -52,21 +58,68 @@
       color: #fff;
     }
 
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: #003366;
+      cursor: pointer;
+      position: relative;
+      z-index: 1100;
+    }
+
+    .dropdown {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 30px;
+      background: #e6f0ff;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 10px 0;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      padding: 10px 20px;
+      color: #003366;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.3s;
+    }
+
+    .dropdown a:hover {
+      background-color: #cce5ff;
+    }
+
+    @media screen and (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
     .main-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 80px 60px;
+      padding: 60px 30px;
       flex-wrap: wrap;
+      gap: 40px;
     }
 
     .left-section {
-      max-width: 50%;
+      flex: 1 1 400px;
+      max-width: 600px;
     }
 
     .left-section h1 {
-      font-size: 48px;
-      line-height: 1.2;
+      font-size: 42px;
+      line-height: 1.3;
       margin-bottom: 20px;
       color: #2c3e50;
     }
@@ -77,7 +130,7 @@
 
     .left-section p {
       font-size: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       color: #555;
     }
 
@@ -94,18 +147,16 @@
     }
 
     .hero-buttons a:hover {
-      /* background: #0056b3; */
       background: #003366;
-      /* color: #007bff; */
       color: white;
       box-shadow: 2px 2px 2px black;
-      /* box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3); */
       transform: translateY(-6px);
     }
 
     .right-section {
-      width: 45%;
-      min-height: 300px;
+      flex: 1 1 450px;
+      min-height: 380px;
+      aspect-ratio: 4 / 2;
       background-color: #fff;
       border-radius: 16px;
       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
@@ -128,7 +179,6 @@
       height: auto;
       border-radius: 12px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      /* transition: transform 0.5s ease, box-shadow 0.5s ease, border-radius 0.5s ease; */
       transition: all 0.3s ease-in-out;
     }
 
@@ -141,7 +191,7 @@
     .footer {
       background: linear-gradient(90deg, #cce5ff, #e6f0ff);
       color: #003366;
-      padding: 30px 60px;
+      padding: 30px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -149,7 +199,7 @@
       margin-top: 40px;
     }
 
-    .footer .footer-left {
+    .footer-left {
       font-size: 16px;
     }
 
@@ -160,7 +210,6 @@
       transition: all 0.4s ease;
     }
 
-    /* Specific hover styles */
     .social-icon.instagram:hover {
       background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #8A3AB9);
       -webkit-background-clip: text;
@@ -177,24 +226,49 @@
       color: #0077B5;
     }
 
+    @media screen and (max-width: 1024px) {
+      .left-section h1 {
+        font-size: 36px;
+      }
+
+      .right-section {
+        flex: 1 1 100%;
+        min-height: 250px;
+        aspect-ratio: 4 / 2;
+      }
+    }
 
     @media screen and (max-width: 768px) {
       .main-content {
         flex-direction: column;
-        align-items: flex-start;
+        padding: 40px 20px;
       }
 
       .left-section,
       .right-section {
-        width: 100%;
         max-width: 100%;
-        margin-bottom: 40px;
+        flex: 1 1 100%;
+      }
+
+      .right-section {
+        height: 30px;
+      }
+
+      .left-section h1 {
+        font-size: 30px;
+      }
+
+      .left-section p {
+        font-size: 16px;
       }
 
       .image-gallery {
-        flex-direction: column;
-        align-items: center;
         padding: 30px;
+        gap: 20px;
+      }
+
+      .image-gallery img {
+        width: 60%;
       }
 
       .footer {
@@ -203,8 +277,19 @@
         gap: 10px;
       }
 
-      .footer .footer-icons a {
-        margin: 0 10px;
+      .footer-icons {
+        margin-top: 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hero-buttons a {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .right-section {
+        height: 240px;
       }
     }
   </style>
@@ -220,6 +305,12 @@
       <a href="{% url 'about' %}">About</a>
       <a href="{% url 'login' %}">Login</a>
     </div>
+    <div class="hamburger" onclick="toggleDropdown()"><i id="hamburgerIcon" class="fas fa-paper-plane"></i></div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'about' %}">About</a>
+      <a href="{% url 'login' %}">Login</a>
+    </div>
   </nav>
 
   <section class="main-content">
@@ -228,21 +319,18 @@
       <p>Manage student data, progress, and classroom tasks effectively with Student_Info.</p>
       <div class="hero-buttons">
         <a href="{% url 'login' %}">Get Started</a>
-        <!-- <a href="#">View Demo</a> -->
       </div>
     </div>
     <div class="right-section"></div>
   </section>
 
-  <!-- Image Gallery Section -->
   <section class="image-gallery">
-    <img src="{% static 'images/img2.png' %}" alt="Screenshot 2">
-    <img src="{% static 'images/img3.png' %}" alt="Screenshot 3">
-    <img src="{% static 'images/img4.png' %}" alt="Screenshot 4">
-    <img src="{% static 'images/img5.png' %}" alt="Screenshot 5">
+    <img src="/static/images/img2.png" alt="Screenshot 2">
+    <img src="/static/images/img3.png" alt="Screenshot 3">
+    <img src="/static/images/img4.png" alt="Screenshot 4">
+    <img src="/static/images/img5.png" alt="Screenshot 5">
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-left">
       &copy; 2025 Student_Info. All rights reserved.
@@ -253,23 +341,30 @@
       <a href="https://linkedin.com/in/tushar-sune-795035273" target="_blank" class="social-icon linkedin"><i class="fab fa-linkedin"></i></a>
     </div>
   </footer>
-  <script>
-    let titleText = "👨‍🎓 Student_Info";
-    let index = 0;
-    let titles = ["👨‍🎓 Student_Info", "📚 Empowering Education", "🌐 Learn and Grow"];
 
-    function changeTitle() {
-      document.title = titles[index % titles.length];
-      index++;
+  <script>
+    const dropdown = document.getElementById("dropdownMenu");
+    const hamburgerIcon = document.getElementById("hamburgerIcon");
+
+    function toggleDropdown() {
+      if (dropdown.style.display === "flex") {
+        dropdown.style.display = "none";
+        hamburgerIcon.classList.add("fa-paper-plane");
+        hamburgerIcon.classList.remove("fa-bars");
+      } else {
+        dropdown.style.display = "flex";
+        hamburgerIcon.classList.remove("fa-paper-plane");
+        hamburgerIcon.classList.add("fa-bars");
+      }
     }
 
-    // Change the title every 2 seconds
-    setInterval(changeTitle, 2000);
-
-    // Animate the title
-    // document.title = `<span class="animated-title">${titleText}</span>`;
+    let titles = ["👨‍🎓 Student_Info", "📚 Empowering Education", "🌐 Learn and Grow"];
+    let index = 0;
+    setInterval(() => {
+      document.title = titles[index % titles.length];
+      index++;
+    }, 2000);
   </script>
-
 </body>
 
 </html>
