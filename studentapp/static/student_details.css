@@ -50,52 +50,41 @@ body {
     font-weight: 500;
     font-size: 14px;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); */
+    box-shadow: 2px 4px 10px black;
+}
+
+.action-button:hover {
+    transform: translateY(-5px);
+    color: white;
+    border-radius: 10%;
+    box-shadow: 1.5px 1.5px 1px black;
+    ;
 }
 
 .add-btn {
     background-color: #28a745;
     color: black;
-    /* box-shadow: 2px 4px 10px black; */
-}
-
-.add-btn:hover {
-    /* background-color: #218838; */
-    transform: translateY(-5px);
 }
 
 .download-btn {
     background-color: #ffc107;
-    color:black;
-    box-shadow: 2px 4px 10px black;
-}
-
-.download-btn:hover {
-    /* background-color: #e0a800; */
-    transform: translateY(-5px);
+    color: black;
+    /* box-shadow: 2px 4px 10px black; */
 }
 
 .home-btn {
     background-color: gray;
     color: black;
     /* box-shadow: 2px 4px 10px black; */
-    box-shadow: 2px 4px 0px black;
 }
 
-.home-btn:hover {
-    transform: translateY(-5px);
-}
-.attendance-btn{
+.attendance-btn {
     background-color: rgb(74, 74, 198);
     color: black;
-    box-shadow: 2px 4px 10px black;
-}
-.attendance-btn:hover{
-    transform: translateY(-5px);
+    /* box-shadow: 2px 4px 10px black; */
 }
 
-
-/* Performance List */
 .performance-section {
     margin-bottom: 40px;
 }
@@ -178,6 +167,7 @@ body {
         opacity: 0;
         transform: translateY(25px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -191,12 +181,14 @@ body {
     }
 
     .student-actions {
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        justify-items: center;
     }
 
     .action-button {
-        width: 100%;
+        width: 70%;
         text-align: center;
     }
 }
