@@ -227,26 +227,40 @@
             <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}
-                {{ form.username.errors }}
+                {% for error in form.username.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <div class="form-group">
                 {{ form.email.label_tag }}
                 {{ form.email }}
-                {{ form.email.errors }}
+                {% for error in form.email.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <div class="form-group">
                 {{ form.password1.label_tag }}
                 {{ form.password1 }}
-                {{ form.password1.errors }}
+                {% for error in form.password1.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <div class="form-group">
                 {{ form.password2.label_tag }}
                 {{ form.password2 }}
-                {{ form.password2.errors }}
+                {% for error in form.password2.errors %}
+                <div class="error-message">{{ error }}</div>
+                {% endfor %}
             </div>
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <div class="error-message">{{ error }}</div>
+            {% endfor %}
+            {% endif %}
 
             <div style="text-align: center;">
                 <button type="submit">Signup</button>
