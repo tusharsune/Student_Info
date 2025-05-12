@@ -1,4 +1,3 @@
-/* General Page Styling */
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +6,7 @@ body {
     color: #333;
 }
 
-/* Container */
+
 .student-container {
     max-width: 800px;
     margin: 40px auto;
@@ -18,7 +17,6 @@ body {
     animation: fadeSlideUp 0.6s ease-out;
 }
 
-/* Header */
 .student-header {
     text-align: center;
     margin-bottom: 30px;
@@ -35,7 +33,7 @@ body {
     margin: 4px 0;
 }
 
-/* Action Buttons */
+
 .student-actions {
     display: flex;
     justify-content: center;
@@ -112,7 +110,6 @@ body {
     color: #777;
 }
 
-/* Attendance List */
 .attendance-section {
     margin-bottom: 40px;
 }
@@ -148,7 +145,6 @@ body {
     color: #777;
 }
 
-/* Chart Section */
 .chart-section {
     margin-top: 30px;
 }
@@ -161,7 +157,6 @@ body {
     display: block;
 }
 
-/* Animation */
 @keyframes fadeSlideUp {
     0% {
         opacity: 0;
@@ -174,7 +169,6 @@ body {
     }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
     .student-container {
         padding: 20px;
