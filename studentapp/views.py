@@ -14,16 +14,9 @@ import json
 
 from django.contrib.auth import get_user_model
 
-def create_admin_user():
-    User = get_user_model()
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'tdssdt765@gmail.com', 'tusharsune..2411')
-
-
 def index(request):
     return render(request, 'index.html')
 
-# Home view with filtering, sorting, and pagination
 @login_required
 def home(request):
     query = request.GET.get('q', '')
@@ -31,7 +24,6 @@ def home(request):
     start_date = request.GET.get('start_date', '')
     end_date = request.GET.get('end_date', '')
 
-    # Filter students by the logged-in user
     students = Student.objects.filter(user=request.user)
 
     if query:
@@ -85,7 +77,7 @@ def about(request):
 
 @login_required
 def student_detail(request, student_id):
-    student = get_object_or_404(Student, id=student_id, user=request.user)  # Ensure student is linked to logged-in user
+    student = get_object_or_404(Student, id=student_id, user=request.user)  
     performances = student.performances.order_by('id')
     attendances = student.attendances.order_by('date')
 
@@ -124,14 +116,12 @@ def add_student(request):
         phone = request.POST.get('phone')
         address = request.POST.get('address')
 
-        # Check if email already exists
         if Student.objects.filter(email=email).exists():
             messages.error(request, "A student with this email already exists.")
             return render(request, 'add_student.html', {
                 'name': name, 'email': email, 'phone': phone, 'address': address
             })
 
-        # Create the student if email is unique
         Student.objects.create(
             user=request.user,
             name=name,
@@ -141,13 +131,10 @@ def add_student(request):
         )
         messages.success(request, "Student added successfully.")
         
-        # Redirect to 'home' instead of 'student_list'
-        return redirect('home')  # or 'student_list' if you have that view
-
+        return redirect('home') 
     return render(request, 'add_student.html')
 
 
-# Edit an existing student's details
 @login_required
 def edit_student(request, id):
     student = get_object_or_404(Student, pk=id)
@@ -161,7 +148,6 @@ def edit_student(request, id):
     return render(request, 'edit_student.html', {'student': student})
 
 
-# Delete a student from the database
 @login_required
 def delete_student(request, id):
     student = get_object_or_404(Student, pk=id)
@@ -169,12 +155,11 @@ def delete_student(request, id):
     return redirect('home')
 
 
-# Add a performance record for a student
 @login_required
 def add_performance(request, student_id):
     student = get_object_or_404(Student, id=student_id)
     
-    # Move imports inside the function to prevent circular import
+   
     from .forms import PerformanceForm
 
     if request.method == "POST":
@@ -190,19 +175,16 @@ def add_performance(request, student_id):
     return render(request, 'add_performance.html', {'form': form, 'student': student})
 
 
-# Mark attendance for a student on a given date
 @login_required
 def mark_attendance(request, student_id, date):
     student = get_object_or_404(Student, id=student_id)
     date = datetime.strptime(date, '%Y-%m-%d').date()
 
-    # Ensure the date is not in the future
     if date > datetime.now().date():
         return HttpResponse("Cannot mark attendance for a future date.", status=400)
 
     attendance, created = Attendance.objects.get_or_create(student=student, date=date)
     
-    # Move imports inside the function to prevent circular import
     from .forms import AttendanceForm
 
     if request.method == "POST":
@@ -215,8 +197,12 @@ def mark_attendance(request, student_id, date):
     
     return render(request, 'mark_attendance.html', {'form': form, 'student': student, 'date': date})
 
+def create_admin_user():
+    User = get_user_model()
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'tdssdt765@gmail.com', 'tusharsune..2411')
 
-# Generate a PDF report for a student containing performance and attendance records
+
 @login_required
 def generate_pdf_report(request, student_id):
     student = get_object_or_404(Student, id=student_id)
@@ -225,47 +211,40 @@ def generate_pdf_report(request, student_id):
 
     buffer = BytesIO()
     p = canvas.Canvas(buffer, pagesize=letter)
-    width, height = letter  # Width and height of the page
+    width, height = letter  
 
-    # Title
     p.setFont("Helvetica-Bold", 14)
     p.drawString(100, height - 40, f"Student Report: {student.name}")
 
-    # Add performance data to PDF
     p.setFont("Helvetica", 10)
     p.drawString(100, height - 60, "Performance History:")
 
-    y_position = height - 80  # Start position for the performance data
+    y_position = height - 80 
 
-    # Loop through performances and add them to the PDF
     for performance in performances:
         performance_text = f"{performance.marks} - {performance.grade} - {performance.feedback}"
         
-        # Wrap the text to fit within the page width (500px width for text)
-        wrapped_text = wrap(performance_text, width=60)  # Adjust the width as needed
+        wrapped_text = wrap(performance_text, width=60) 
         
         for line in wrapped_text:
             p.drawString(100, y_position, line)
-            y_position -= 12  # Move to the next line
+            y_position -= 12  
 
-        y_position -= 10  # Add some space between different performances
+        y_position -= 10 
 
-    # Add attendance data to PDF
     p.drawString(100, y_position, "Attendance History:")
     y_position -= 20
 
     for attendance in attendances:
         attendance_text = f"{attendance.date} - {attendance.status}"
         
-        # Wrap the text to fit within the page width (500px width for text)
         wrapped_text = wrap(attendance_text, width=60)
         
         for line in wrapped_text:
             p.drawString(100, y_position, line)
-            y_position -= 12  # Move to the next line
+            y_position -= 12 
 
-        y_position -= 10  # Add some space between different attendance records
-
+        y_position -= 10  
     p.showPage()
     p.save()
 
