@@ -190,10 +190,6 @@ footer .social-links {
         right: 10px;
     }
 
-    .logo {
-        height: 10vh;
-    }
-
     /* Footer */
     footer {
         flex-direction: column;
