@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Student(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # 👈 Add this line
     name = models.CharField(max_length=100)
-    email = models.EmailField
+    email = models.EmailField()
     phone = models.CharField(max_length=15)
     address = models.TextField()
     enrollment_date = models.DateField(auto_now_add=True)
