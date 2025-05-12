@@ -17,7 +17,6 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
-# --- Signup View ---
 def signup_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -25,13 +24,11 @@ def signup_view(request):
             form.save()
             return redirect('login')
         else:
-            # Pass form errors to the template
             return render(request, 'accounts/signup.html', {'form': form})
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
-# --- Logout View ---
 def logout_view(request):
     logout(request)
     return redirect('index')
