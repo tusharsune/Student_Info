@@ -1,11 +1,9 @@
-/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body */
 body {
     background: #f9f9f9;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,19 +12,16 @@ body {
     min-height: 100vh;
 }
 
-/* Container */
 .container {
     margin-top: 12vh;
     flex-grow: 1;
 }
 
-/* Headings */
 h2 {
     color: #343a40;
     font-weight: bold;
 }
 
-/* Buttons */
 .btn {
     transition: all 0.25s ease-in-out;
     transform-origin: center;
@@ -44,13 +39,11 @@ h2 {
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.4);
 }
 
-/* Table */
 .table thead {
     background-color: #343a40;
     color: #fff;
 }
 
-/* Sort and Filter Links */
 .sort-filter a.btn-link {
     font-weight: 500;
     text-decoration: none;
@@ -60,7 +53,6 @@ h2 {
     color: #0d6efd;
 }
 
-/* Action Buttons */
 .action-buttons {
     display: flex;
     gap: 5px;
@@ -68,7 +60,6 @@ h2 {
     justify-content: center;
 }
 
-/* Header */
 header {
     background-color: #343a40;
     color: white;
@@ -114,7 +105,6 @@ header nav a:hover {
     color: orangered !important;
 }
 
-/* Footer */
 footer {
     display: flex;
     justify-content: center;
@@ -130,7 +120,6 @@ footer {
     margin-top: auto;
 }
 
-/* Footer content */
 footer .social-links a {
     margin: 0 10px;
 }
@@ -177,11 +166,8 @@ footer .social-links {
     transform: translateY(-6px);
 }
 
-/* Responsive Design */
 
-/* For screens smaller than 768px */
 @media (max-width: 768px) {
-    /* Header */
     header h4 {
         font-size: 1.5rem;
     }
@@ -190,7 +176,6 @@ footer .social-links {
         right: 10px;
     }
 
-    /* Footer */
     footer {
         flex-direction: column;
         padding: 1rem;
@@ -215,14 +200,11 @@ footer .social-links {
     }
 }
 
-/* For screens smaller than 480px */
 @media (max-width: 480px) {
-    /* Header */
     header h4 {
         font-size: 1.2rem;
     }
 
-    /* Footer */
     footer {
         padding: 1rem 0.5rem;
     }
