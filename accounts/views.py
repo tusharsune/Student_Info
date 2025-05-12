@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from studentapp.forms import CustomUserCreationForm
 
-# --- Login View ---
+def profile_view(request):
+    return render(request, 'accounts/profile.html')
+    
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
