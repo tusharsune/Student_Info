@@ -11,13 +11,13 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures the body takes full height of the viewport */
+    min-height: 100vh;
 }
 
 /* Container */
 .container {
     margin-top: 12vh;
-    flex-grow: 1; /* Ensures the content section grows with the page */
+    flex-grow: 1;
 }
 
 /* Headings */
@@ -121,29 +121,28 @@ footer {
     align-items: center;
     background-color: #343a40;
     color: #ffffff;
-    padding: 0.5rem 0; /* Reduced padding */
+    padding: 0.5rem 0;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    height: auto; /* Adjusted height to auto so it adapts to content */
-    min-height: 8vh; /* Minimum height for footer */
+    height: auto;
+    min-height: 8vh;
     width: 100%;
-    margin-top: auto; /* Ensures footer is pushed to the bottom */
+    margin-top: auto;
 }
 
 /* Footer content */
 footer .social-links a {
-    margin: 0 10px; /* Adjusted spacing between icons */
+    margin: 0 10px;
 }
 
 footer p {
-    font-size: 0.9rem; /* Adjust font size if needed */
+    font-size: 0.9rem;
 }
 
 footer .social-links {
     margin-top: 10px;
 }
 
-/* Social Media Icons */
 .social-links {
     position: absolute;
     right: 50px;
@@ -179,26 +178,65 @@ footer .social-links {
 }
 
 /* Responsive Design */
+
+/* For screens smaller than 768px */
 @media (max-width: 768px) {
-    /* Footer icons adjustment */
-    .social-links {
-        position: static;
-        justify-content: center;
-        margin-top: 1rem;
+    /* Header */
+    header h4 {
+        font-size: 1.5rem;
     }
 
-    /* Header Navigation adjustment */
     header nav {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        right: 10px;
     }
-    
-    header h4 {
-        font-size: 1.5rem; /* Adjust header text size for mobile */
-    }
-    
+
     .logo {
-        height: 12vh; /* Adjust logo height for smaller screens */
+        height: 10vh;
+    }
+
+    /* Footer */
+    footer {
+        flex-direction: column;
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    footer .social-links {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    footer .social-links a {
+        font-size: 20px;
+    }
+
+    footer p {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+/* For screens smaller than 480px */
+@media (max-width: 480px) {
+    /* Header */
+    header h4 {
+        font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+        padding: 1rem 0.5rem;
+    }
+
+    footer .social-links a {
+        font-size: 18px;
+        margin: 0 5px;
+    }
+
+    footer p {
+        font-size: 0.8rem;
     }
 }
