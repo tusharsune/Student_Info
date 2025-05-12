@@ -12,6 +12,13 @@ from textwrap import wrap
 from io import BytesIO
 import json
 
+from django.contrib.auth import get_user_model
+
+def create_admin_user():
+    User = get_user_model()
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', 'AdminPassword123')
+
 
 def index(request):
     return render(request, 'index.html')
