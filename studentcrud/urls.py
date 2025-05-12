@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from studentapp.views import create_admin_user
+
+create_admin_user()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
